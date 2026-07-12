@@ -1,4 +1,4 @@
 interface:
-  display_name: "Domain to Live Site"
-  short_description: "Build, publish, deploy, and connect a domain"
-  default_prompt: "Use $domain-to-live-site to turn this domain into a polished live website."
+  display_name: "Make GMB"
+  short_description: "Turn a domain into a live local-business site"
+  default_prompt: "Use $make-gmb to turn this domain into a polished local-business website and launch it."

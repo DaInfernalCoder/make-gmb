@@ -1,104 +1,119 @@
 ---
-name: domain-to-live-site
-description: "Turn a domain name into a polished, production-ready brochure or lead-generation website end to end: infer the business and brand, research the market, design and build in a new repository, source licensed imagery, QA desktop/mobile/accessibility, commit and publish to GitHub, deploy to Vercel, attach apex and www domains, configure or precisely hand off registrar DNS, and verify the live site. Use when the user says they bought a domain, asks to make or launch a website from a domain, wants a site built and hosted with minimal input, or provides only a domain and expects the rest handled autonomously."
+name: make-gmb
+description: "Build and launch a polished local-business marketing website end to end from only a domain name: infer the brand and offer, create the project in the permanent websites-and-apps folder, design and build the site, source licensed imagery, add a real quote form, publish to GitHub, deploy through Vercel, connect apex and www domains, guide or automate Spaceship DNS, and verify HTTPS. Use when Sumit says he bought a domain, asks to make a website or GMB site, wants a local-service business launched with minimal input, or explicitly invokes make-gmb."
 ---
 
-# Domain to Live Site
+# Make GMB
 
-Launch the strongest credible site the domain supports. Treat the domain as the only required input. Infer ordinary details, disclose important assumptions, and ask only when a missing fact would make the result misleading or unsafe.
+Turn one domain into a credible local-business website and finish the operational launch. Require only the domain. Infer ordinary details, keep unknown facts unstated, and ask only for secrets or decisions that cannot be derived safely.
 
-## Operating contract
+## Definition of done
 
-- Own the complete path: research, design, implementation, GitHub, deployment, DNS, and live verification.
-- Default to a separate project directory and repository. Never add an unrelated site to the current app repository.
-- Continue through reversible, in-scope steps without seeking confirmation.
-- Never invent addresses, phone numbers, prices, certifications, reviews, customer counts, guarantees, service areas, or “past work.”
-- Use licensed stock photography for launch material and label it honestly in repository documentation. Prefer original assets when they exist.
-- Make every contact path truthful. Use a real configured form destination when available; otherwise use an explicitly labeled email-app fallback and flag mailbox setup as an operational requirement.
-- Do not expose tokens, passwords, provider keys, or registrar credentials in code, git, client JavaScript, logs, or the final response.
-- A Vercel preview URL is not completion when the user supplied a custom domain.
+Complete all of the following:
 
-## Workflow
+- permanent local repository under `/Users/sumit/Documents/websites & apps/<project-slug>`;
+- polished responsive site with honest conversion copy and licensed local images;
+- working quote form that includes the lead's complete query and phone number;
+- clean `main` commit in a dedicated GitHub repository;
+- GitHub connected to Vercel for push-to-production deploys;
+- production deployment ready;
+- apex domain and `www` attached;
+- registrar DNS changed and propagated;
+- HTTPS and final page content verified through the real custom domain.
 
-### 1. Resolve the brief from the domain
+A `.vercel.app` URL alone is not completion.
 
-Parse the domain into likely brand words and category. Browse the domain, DNS, exact brand phrase, and local competitors when web access is available. Check nearby repository or user context for ownership, geography, contact details, templates, and deploy conventions.
+## 1. Resolve the business from the domain
 
-Choose and record internally:
+Parse the domain into brand words and likely service category. Browse the domain, exact phrase, competitors, and current DNS when available. Inspect nearby repositories and user context for templates, geography, contact details, provider conventions, and existing credentials.
 
-- concrete business and audience;
-- page's single conversion job;
-- credible offer and service structure;
-- SEO title/description;
-- important unknowns that must remain unstated.
+Choose the audience, primary conversion, credible services, and SEO language. Never fabricate an address, phone number, price, certification, service area, review, guarantee, portfolio claim, or customer count. If the domain has several plausible meanings, choose the strongest commercial interpretation unless that would create a deceptive result.
 
-If the domain is ambiguous, choose the most commercially coherent interpretation and proceed with transparent placeholder-free general copy. Ask only if competing interpretations would create materially different or potentially deceptive businesses.
+## 2. Create the project in the right place
 
-### 2. Set a distinct design direction
+Create a sibling repository at:
 
-Use the frontend-design skill when available. Before coding, define a compact system: 4–6 named colors with hex values, display/body typefaces, layout thesis, and one business-specific signature element. Reject generic SaaS gradients, decorative metrics, fake badges, and recycled section numbering unless the subject truly calls for them.
+```text
+/Users/sumit/Documents/websites & apps/<project-slug>
+```
 
-Use existing local starters only as engineering foundations. Restyle and restructure them enough that the result belongs to this business.
+Do not build an unrelated business inside the active app repository. Do not leave the permanent copy in `/private/tmp`; temporary staging is acceptable only when filesystem permissions require it, followed by a move to the permanent folder before handoff.
 
-### 3. Select the smallest suitable stack
+## 3. Design before coding
 
-- Use dependency-free HTML/CSS/JS for a fast brochure site with simple interactions.
-- Use Next.js or another existing project stack only when server routes, CMS, authenticated features, or a real integration justify it.
-- Keep launch images local to the deployment; do not rely on random-image endpoints or fragile hotlinks.
-- Include responsive navigation, accessible focus states, reduced-motion handling, semantic headings, useful alt text, favicon, metadata, and a clear CTA.
+Use the frontend-design skill when available. Define a compact palette, deliberate display/body type pairing, layout thesis, and one subject-specific signature element. Start from existing engineering templates when useful, but reshape them enough that the site belongs to this business.
 
-Create the project outside the unrelated working repository. If the preferred permanent path is unavailable, build in a writable temporary path, publish it, and report the local path honestly.
+Use properly licensed stock photos for launch material and record the source in repository documentation. Never present stock photos as the business's past work. Prefer downloaded local assets over fragile hotlinks.
 
-### 4. Build for conversion without fabrication
+Build a real local-service funnel: hero, services, process, observable-workmanship proof, FAQ, and quote/contact flow. Keep one primary CTA consistent.
 
-Include only sections supported by the inferred business: hero, offer/services, process, proof through observable workmanship rather than fake social proof, FAQ, and contact/quote flow. Write from the visitor's point of view and make the primary CTA consistent throughout.
+## 4. Choose the smallest suitable stack
 
-When no verified phone, address, service area, rate, or business email exists, omit it. It is better to say “request a quote” than fabricate a starting price.
+- Default to dependency-free HTML/CSS/JS for brochure sites.
+- Add Vercel functions only for real server behavior such as email delivery.
+- Use Next.js only when server rendering, CMS, authentication, or application state justifies it.
+- Include semantic headings, metadata, favicon, responsive navigation, keyboard focus, reduced motion, useful alt text, and readable contrast.
 
-### 5. Validate locally
+Treat the header as part of the hero composition. Verify logo and navigation contrast over the actual hero image at desktop and phone widths; do not combine a light translucent header with white text.
 
-Run `scripts/preflight_site.py <project-dir>` for static sites. Then serve locally and use a real browser at desktop and phone widths.
+## 5. Wire quote email correctly
 
-Verify:
+Read `references/quote-email.md` before implementing a lead form.
 
-- all local images and internal anchors load;
-- one H1 and a useful title/description exist;
-- no console/page errors or horizontal mobile overflow;
-- menu, accordion, and form behavior work;
-- images appear during normal scrolling;
-- keyboard focus and reduced motion are usable;
-- no TODO, lorem ipsum, broken placeholder, unverified claim, or secret is present.
+Default notification recipient for Sumit's sites:
 
-Fix discovered issues and rerun the relevant checks.
+```text
+gian@caldenmoore.com
+```
 
-### 6. Publish deliberately
+Include the website/brand name in the subject and body. Include every submitted field, especially phone number, visitor email, vehicle/service selection, location, and the complete free-text query. Set `replyTo` to the lead's email.
 
-Initialize `main`, commit the full verified site with a terse Conventional Commit, and create a repository named from the brand/domain. Default to public for a marketing site unless the user or local policy indicates private. Push immediately.
+Use SMTP credentials only in Vercel environment variables. If the sender uses Gmail or Google Workspace, request the sending mailbox and its app password. Never commit or expose the app password. Keep a transparent direct-email fallback until server delivery is configured and tested.
 
-Prefer authenticated GitHub CLI. If an in-sandbox auth check fails, retry outside restricted networking before concluding credentials are invalid.
+## 6. Validate locally
 
-### 7. Deploy to Vercel
+For static sites, run:
 
-Read `references/provider-runbook.md` before deployment or DNS work. Deploy production, not only preview. Use the current installed CLI explicitly when multiple versions exist. Attach both the apex domain and `www` unless the user requested otherwise.
+```bash
+python3 scripts/preflight_site.py <project-dir>
+```
 
-Do not claim launch success until the deployment reports `READY`.
+Serve locally and use a real browser at desktop and phone widths. Verify images and anchors, one H1, title/description, menu and form behavior, no console errors, no mobile overflow, readable header contrast, keyboard focus, and no placeholder/fabricated content.
 
-### 8. Configure DNS and verify the real domain
+For forms, test validation and failure states without secrets first. After SMTP env configuration, send one real test and confirm the recipient sees the website name and every query field.
 
-Inspect Vercel's domain verification output for exact records. Apply them through an authenticated registrar API or browser session if available and authorized. Preserve unrelated mail and verification records.
+## 7. Publish and deploy
 
-If registrar access is unavailable, give the user the exact record operations and the provider screen to use. This is the only acceptable manual handoff; keep the goal active or blocked rather than calling the custom-domain launch complete.
+Read `references/provider-runbook.md` before GitHub, Vercel, or DNS work.
 
-After changes, poll within reasonable DNS propagation time. Use `scripts/check_live.py <domain> [expected-title-text]` plus Vercel verification. Confirm:
+Initialize `main`, use a terse Conventional Commit, create a dedicated GitHub repository, and push immediately. Default to public for a marketing site unless source sensitivity requires private. Connect the GitHub repository to Vercel so later pushes deploy automatically.
 
-- apex and `www` resolve;
-- HTTPS is valid;
-- the intended production deployment is served;
-- the final title/content is present;
-- one hostname redirects or canonically resolves as intended.
+Deploy production and confirm `READY`. Attach both the apex and `www` hosts.
 
-### 9. Hand off concisely
+## 8. Connect Spaceship correctly
 
-Lead with live status. Link the custom domain, GitHub repository, and Vercel project/deployment. State QA completed, any honest operational limitation (for example an unprovisioned mailbox), and the exact remaining blocker if DNS could not be changed.
+For a new Spaceship domain, use the domain's main **Advanced DNS → Nameservers → Change → Custom nameservers** control.
 
-Never say “done” when only the repository or preview deployment exists.
+Do not use **Brand nameservers**, **Personal nameservers**, or any screen asking for a host plus IP address; those create glue records and are the wrong place.
+
+Enter the nameservers Vercel currently recommends, normally:
+
+```text
+ns1.vercel-dns.com
+ns2.vercel-dns.com
+```
+
+Save and confirm the custom-DNS warning. If mail or other DNS services already exist, preserve/recreate their records before switching. Use registrar browser automation only when an authenticated session is available; otherwise give the user the exact clicks and resume after they save.
+
+Treat old nameservers immediately after saving as propagation, not a failed change. Poll reasonably; Spaceship documents that propagation can take up to 48 hours. Stop polling when the user asks.
+
+## 9. Verify and hand off
+
+Run Vercel verification for apex and `www`, then:
+
+```bash
+python3 scripts/check_live.py example.com "Expected Brand"
+python3 scripts/check_live.py www.example.com "Expected Brand"
+```
+
+Confirm authoritative nameservers, HTTPS, intended production content, and canonical apex/`www` behavior. Lead the handoff with live status and link the custom domain, GitHub repository, Vercel project, and permanent local folder. State any operational limitation such as an SMTP secret still needed.

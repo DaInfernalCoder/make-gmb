@@ -54,6 +54,14 @@ Prefer record changes over nameserver replacement when the existing zone contain
 
 Registrar access can come from an authenticated provider API, CLI, or browser session. Domain ownership alone does not create registrar access. If no authenticated path exists, provide the exact records and wait for the user to apply them.
 
+### Spaceship
+
+For a fresh Spaceship registration, open the domain's **Advanced DNS** page. In the main **Nameservers** section, click **Change**, choose **Custom nameservers**, enter Vercel's two nameservers, save, and confirm the custom-DNS warning.
+
+Do not use **Brand nameservers** or **Personal nameservers**. A form showing `Host`, `.example.com`, and `IPv4 or IPv6 Address` is the glue-record editor and is not used to delegate a domain to Vercel.
+
+Immediately after saving, public resolvers may still return `launch1.spaceship.net` and `launch2.spaceship.net`. That is normal propagation. Recheck Vercel and authoritative DNS later; do not ask the user to repeat the change unless Spaceship itself still shows the old selection.
+
 ## Propagation and verification
 
 DNS may update quickly but can remain cached. Re-run Vercel verification, then check HTTPS through the actual hostname. Do not test only the `.vercel.app` alias.
