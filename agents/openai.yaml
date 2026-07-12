@@ -1,0 +1,4 @@
+interface:
+  display_name: "Domain to Live Site"
+  short_description: "Build, publish, deploy, and connect a domain"
+  default_prompt: "Use $domain-to-live-site to turn this domain into a polished live website."
