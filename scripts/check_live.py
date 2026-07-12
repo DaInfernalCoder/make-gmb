@@ -17,7 +17,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=15)
     args = parser.parse_args()
     url = f"https://{args.hostname.strip().rstrip('/')}"
-    request = urllib.request.Request(url, headers={"User-Agent": "domain-to-live-site/1.0"})
+    request = urllib.request.Request(url, headers={"User-Agent": "make-gmb/1.0"})
 
     try:
         with urllib.request.urlopen(request, timeout=args.timeout, context=ssl.create_default_context()) as response:
